@@ -1,9 +1,7 @@
-// handler.js - An ES Module file
-export async function handler(event, context) {
-  // Dynamically import node-fetch as a CommonJS module
-  const { default: fetch } = await import("node-fetch");
+const fetch = require("node-fetch");
 
-  // Default to 'index.html' if no path is specified
+exports.handler = async function (event, context) {
+  const path = event.queryStringParameters.path || "index.html"; // Default to 'index.html' if no path is specified
   const url = `https://elaborate-cactus-791d91.netlify.app/`;
 
   try {
@@ -14,10 +12,13 @@ export async function handler(event, context) {
       statusCode: 200,
       headers: {
         "Content-Type": response.headers.get("Content-Type"), // Mimic the content type of the fetched resource
+        "Access-Control-Allow-Origin":
+          "https://papaya-bellflower-58z8.squarespace.com/", // Allow requests from any origin
+        // Add other CORS headers if needed
       },
       body: body,
     };
   } catch (error) {
     return { statusCode: 500, body: error.toString() };
   }
-}
+};

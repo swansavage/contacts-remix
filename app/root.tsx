@@ -24,17 +24,10 @@ import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
 import { createEmptyContact, getContacts } from "./data";
 
 
-export const loader: LoaderFunction = async ({
+export const loader = async ({
   request,
 }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
-
-  // Check if the URL matches a specific condition and redirect if it does
-  if (url.pathname.startsWith('/.netlify/functions/serveApp')) {
-    return redirect('/'); // Redirect to the home page or any other appropriate URL
-  }
-
-  // Existing loader functionality for fetching contacts
   const q = url.searchParams.get("q");
   const contacts = await getContacts(q);
   return json({ contacts, q });
