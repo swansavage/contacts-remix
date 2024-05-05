@@ -4,7 +4,7 @@ export async function handler(event, context) {
   const { default: fetch } = await import("node-fetch");
 
   const path = event.queryStringParameters.path || "index.html"; // Default to 'index.html' if no path is specified
-  const url = `https://main--elaborate-cactus-791d91.netlify.app/${path}`;
+  const url = `https://elaborate-cactus-791d91.netlify.app/${path}`;
 
   try {
     const response = await fetch(url);
