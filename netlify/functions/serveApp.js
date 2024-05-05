@@ -1,8 +1,10 @@
-import fetch from "node-fetch";
+// handler.js - An ES Module file
+export async function handler(event, context) {
+  // Dynamically import node-fetch as a CommonJS module
+  const { default: fetch } = await import("node-fetch");
 
-async function handler(event, context) {
   const path = event.queryStringParameters.path || "index.html"; // Default to 'index.html' if no path is specified
-  const url = `https://dazzling-mermaid-91b987.netlify.app/`;
+  const url = `https://main--elaborate-cactus-791d91.netlify.app/${path}`;
 
   try {
     const response = await fetch(url);
@@ -19,5 +21,3 @@ async function handler(event, context) {
     return { statusCode: 500, body: error.toString() };
   }
 }
-
-export { handler };
