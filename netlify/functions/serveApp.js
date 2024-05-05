@@ -3,8 +3,8 @@ export async function handler(event, context) {
   // Dynamically import node-fetch as a CommonJS module
   const { default: fetch } = await import("node-fetch");
 
-  const path = event.queryStringParameters.path || "index.html"; // Default to 'index.html' if no path is specified
-  const url = `https://elaborate-cactus-791d91.netlify.app/${path}`;
+  // Default to 'index.html' if no path is specified
+  const url = `https://elaborate-cactus-791d91.netlify.app/`;
 
   try {
     const response = await fetch(url);
