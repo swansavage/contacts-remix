@@ -1,3 +1,8 @@
+if (window.location.pathname.startsWith('/.netlify/functions/serveApp')) {
+  window.location.pathname = '/';
+}
+
+
 import {
   Form,
   NavLink,
